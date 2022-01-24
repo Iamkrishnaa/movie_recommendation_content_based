@@ -65,7 +65,7 @@ selected_movie = st.selectbox(
     movie_list
 )
 
-no_of_result = st.slider("No of Recommendations", min_value=5, max_value=15, value=7)
+no_of_result = st.slider("No of Recommendations", min_value=3, max_value=10, value=5)
 
 
 if st.button('Show Recommendation'):
