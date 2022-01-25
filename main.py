@@ -36,7 +36,8 @@ def fetch_date(mov_id):
 
 def get_recommendation(movie, no):
     index = movies[movies['title'] == movie].index[0]
-    distances = sorted(list(enumerate(similarity[index])), reverse=True, key=lambda x: x[1])
+    distances = sorted(
+        list(enumerate(similarity[index])), reverse=True, key=lambda x: x[1])
     movie_names = []
     movie_posters = []
     overviews = []
@@ -65,11 +66,13 @@ selected_movie = st.selectbox(
     movie_list
 )
 
-no_of_result = st.slider("No of Recommendations", min_value=3, max_value=10, value=5)
+no_of_result = st.slider("No of Recommendations",
+                         min_value=5, max_value=15, value=7)
 
 
 if st.button('Show Recommendation'):
-    movie_names, movie_posters, overviews, taglines, date = get_recommendation(selected_movie, no_of_result)
+    movie_names, movie_posters, overviews, taglines, date = get_recommendation(
+        selected_movie, no_of_result)
     st.header(f"Recommendations for {selected_movie} are: ")
     st.title("")
     for i in range(len(movie_names)):
@@ -84,10 +87,10 @@ if st.button('Show Recommendation'):
             st.info(overviews[i])
             st.warning(date[i])
 
-hide_streamlit_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+# hide_streamlit_style = """
+#             <style>
+#             #MainMenu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             </style>
+#             """
+# st.markdown(hide_streamlit_style, unsafe_allow_html=True)
